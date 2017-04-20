@@ -1,0 +1,36 @@
+{% set name = "phymmbl" %}
+{% set version = "4.0" %}
+{% set md5 = "0b0f844091c471b9cb88ba3866138693" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: phymmbl_installer.zip
+  url: http://www.cbcb.umd.edu/software/phymm/phymmbl_installer.zip
+  md5: {{ md5 }}
+
+build:
+  number: 0
+  skip: False
+
+requirements:
+  build:
+    - perl
+    - blast
+  run:
+    - perl
+    - blast
+
+test:
+  commands:
+    - phymmblSetup.pl 2>&1 | grep "FATAL"
+    - which rebuildBlastDB.pl
+    - scoreReads.pl 2>&1 | grep "scoreReads"
+    - which customGenomicData.pl
+
+about:
+  home: https://www.cbcb.umd.edu/software/phymm/
+  license: 'GPL3'
+  summary: 'Taxonomic classification of metagenomic short reads'
