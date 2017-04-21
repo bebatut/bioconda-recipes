@@ -17,9 +17,10 @@ build:
 
 requirements:
   build:
-    - perl
-    - blast
+    - gcc  # [not osx]
+    - llvm  # [osx]
   run:
+    - libgcc  # [not osx]
     - perl
     - blast
 
