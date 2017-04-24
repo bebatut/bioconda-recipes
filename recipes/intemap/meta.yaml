@@ -35,6 +35,8 @@ requirements:
     - quake
     - bowtie2
     - python
+    - mummer
+    - jellyfish
 
 test:
   commands:
