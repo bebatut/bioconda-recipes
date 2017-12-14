@@ -33,7 +33,7 @@ requirements:
 
 test:
   commands:
-    - runMetaBat.pl
+    - runMetaBat.sh
     - metabat2 --help
     - jgi_summarize_bam_contig_depths --help
     - metabat1 --help
