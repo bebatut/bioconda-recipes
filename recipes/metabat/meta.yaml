@@ -1,0 +1,57 @@
+{% set name = "metabat" %}
+{% set version = "2.12.1" %}
+{% set sha256 = "e3aca0656f56f815135521360dc56667ec26af25143c3a31d645fef1a96abbc2" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}_{{ version }}.tar.gz
+  url: https://bitbucket.org/berkeleylab/{{ name }}/get/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  skip: True # [osx]
+
+requirements:
+  build:
+    - boost {{CONDA_BOOST}}*
+    - python >=2.7
+    - scons >=2.1.0
+    - gcc   # [not osx]
+    - llvm  # [osx]
+    - zlib {{ CONDA_ZLIB }}*
+    - binutils
+    - samtools >=1.2
+  run:
+    - libgcc    # [not osx]
+    - perl
+    - boost {{CONDA_BOOST}}*
+    - zlib {{ CONDA_ZLIB }}*
+
+test:
+  commands:
+    - runMetaBat.pl
+    - metabat2 --help
+    - jgi_summarize_bam_contig_depths --help
+    - metabat1 --help
+
+about:
+  home: "https://bitbucket.org/berkeleylab/metabat"
+  license: "BSD"
+  summary: "An efficient tool for accurately reconstructing single genomes from complex microbial communities"
+  description: |
+    Grouping large genomic fragments assembled from shotgun metagenomic
+    sequences to deconvolute complex microbial communities, or metagenome
+    , enables the study of individual organisms and their interactions. Here we
+    developed an automated metagenome binning software, called MetaBAT, which
+    integrates empirical probabilistic distances of genome abundance and
+    tetranucleotide frequency. Tested on both synthetic and real metagenome
+    datasets, MetaBAT outperforms alternative methods in both accuracy and
+    computational efficiency. Applying MetaBAT to an assembly from 1,704 human
+    gut samples formed 1,634 genome bins (>200kb) in 3 hours, where 621 genome
+    bins are >50% complete with <5% contamination from other species. Further
+    analysis shows that the quality of these genome bins approaches manually
+    curated genomes.
