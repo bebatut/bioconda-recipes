@@ -1,0 +1,26 @@
+diff --git a/SConstruct b/SConstruct
+index 65f62b1..cda7488 100644
+--- a/SConstruct
++++ b/SConstruct
+@@ -62,8 +61,8 @@ def findCmdLineOrEnvOrPath(envname, searchPaths, testFile):
+
+
+ boost_root   = findCmdLineOrEnvOrPath('BOOST_ROOT', searchPaths, '/include/boost/unordered_map.hpp')
+-htslib_dir   = 'samtools'
+-samtools_dir = 'samtools'
++htslib_dir   = '$PREFIX'
++samtools_dir = '$PREFIX'
+
+ if boost_root is None:
+     print "ERROR: Could not find a valid boost installation.  Please install one and/or specify a BOOST_ROOT on the command line or environment"
+@@ -83,8 +82,8 @@ if sys.platform == 'darwin':
+     libcpp = '-lc++'
+
+ isOldSamtools = False
+-htslib_dir = 'samtools'
+-samtools_dir = 'samtools'
++htslib_dir = '$PREFIX'
++samtools_dir = '$PREFIX'
+ hts_lib = [ htslib_dir + "/lib", samtools_dir + "/lib" ]
+ hts_inc = [ htslib_dir + "/include", samtools_dir + "/include" ]
+ hts_flag = ''

@@ -1,0 +1,34 @@
+diff --git a/build_samtools.sh b/build_samtools.sh
+index 97528d5..6933418 100755
+--- a/build_samtools.sh
++++ b/build_samtools.sh
+@@ -15,7 +15,7 @@ dir=samtools-$samver
+ [ -f $samtar ] || curl -kL -o $samtar $url
+ [ -d $dir ] || tar -xvjf $samtar
+
+-inst=`pwd`/samtools
++inst=$PREFIX
+ for d in bin include include/bam lib lib/pkgconfig share share/man share/man/man5 share/man/man1
+ do
+   mkdir -p $inst/$d
+@@ -23,11 +23,11 @@ done
+
+ cd $dir
+
+-cd htslib-$htslibver
+-./configure --prefix=$inst
+-make && make install
++#cd htslib-$htslibver
++#./configure --prefix=$inst
++#make && make install
+
+-cd ..
++#cd ..
+
+ make
+ make prefix=$inst install
+@@ -36,4 +36,3 @@ cp *.h $inst/include/bam
+
+
+ trap "" 0
+-

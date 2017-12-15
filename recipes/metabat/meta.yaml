@@ -10,6 +10,9 @@ source:
   fn: {{ name }}_{{ version }}.tar.gz
   url: https://bitbucket.org/berkeleylab/{{ name }}/get/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - SConstruct.patch
+    - build_samtools.sh.patch
 
 build:
   number: 0
@@ -23,8 +26,8 @@ requirements:
     - gcc   # [not osx]
     - llvm  # [osx]
     - zlib {{ CONDA_ZLIB }}*
-    - binutils
-    - ncurses    
+    - htslib
+    - samtools =1.2
   run:
     - libgcc    # [not osx]
     - perl
