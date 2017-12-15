@@ -23,6 +23,7 @@ requirements:
     - gcc   # [not osx]
     - llvm  # [osx]
     - zlib {{ CONDA_ZLIB }}*
+    - binutils
   run:
     - libgcc    # [not osx]
     - perl
