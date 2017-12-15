@@ -27,7 +27,7 @@ requirements:
     - llvm  # [osx]
     - zlib {{ CONDA_ZLIB }}*
     - htslib
-    - samtools =1.2
+    - samtools ==1.2
   run:
     - libgcc    # [not osx]
     - perl
