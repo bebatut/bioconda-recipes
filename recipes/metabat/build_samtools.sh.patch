@@ -11,24 +11,21 @@ index 97528d5..6933418 100755
  for d in bin include include/bam lib lib/pkgconfig share share/man share/man/man5 share/man/man1
  do
    mkdir -p $inst/$d
-@@ -23,11 +23,11 @@ done
+   @@ -23,12 +23,13 @@ done
 
- cd $dir
+    cd $dir
 
--cd htslib-$htslibver
--./configure --prefix=$inst
--make && make install
-+#cd htslib-$htslibver
-+#./configure --prefix=$inst
-+#make && make install
+   -cd htslib-$htslibver
+   -./configure --prefix=$inst
+   -make && make install
+   +#cd htslib-$htslibver
+   +#./configure --prefix=$inst
+   +#make && make install
 
--cd ..
-+#cd ..
+   -cd ..
+   +#cd ..
 
- make
- make prefix=$inst install
-@@ -36,4 +36,3 @@ cp *.h $inst/include/bam
-
-
- trap "" 0
--
+   +./configure --prefix=$PREFIX --enable-libcurl --without-curses
+    make
+    make prefix=$inst install
+    cp libbam.a $inst/lib
